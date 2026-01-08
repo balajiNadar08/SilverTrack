@@ -33,6 +33,6 @@ const movieEntrySchema = new mongoose.Schema({
   }
 }, { timestamp: true });
 
-const MovieEntryModel = mongoose.model("MovieEntry", movieEntrySchema);
+const MovieEntry = mongoose.model("MovieEntry", movieEntrySchema);
 
-export default MovieEntryModel;
+export default MovieEntry;
