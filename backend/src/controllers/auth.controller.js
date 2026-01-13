@@ -55,7 +55,7 @@ export const registerUser = async (req, res) => {
 };
 
 
-// POST: /auth/loginUser
+//* POST: /auth/loginUser
 export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
