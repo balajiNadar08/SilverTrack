@@ -1,4 +1,6 @@
 import MovieEntry from "../models/movieEntry.model.js";
+import { searchMovie } from "../services/tmdb.service.js";
+
 
 //* GET: /movies/
 export const getAllMovies = async (req, res) => {
@@ -177,6 +179,28 @@ export const deleteMovie = async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to delete movie",
+    });
+  }
+};
+
+
+
+
+export const searchMoviesController = async (req, res) => {
+  try {
+    const { q } = req.query;
+
+    const movies = await searchMovie(q);
+
+    res.status(200).json({
+      success: true,
+      count: movies.length,
+      data: movies,
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
     });
   }
 };
