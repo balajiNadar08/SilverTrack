@@ -5,6 +5,7 @@ import {
   addMovie,
   editMovie,
   deleteMovie,
+  searchMoviesController
 } from "../controllers/movies.controller.js";
 
 const moviesRouter = Router();
@@ -18,5 +19,7 @@ moviesRouter.post("/", addMovie);
 moviesRouter.put("/:id", editMovie);
 
 moviesRouter.delete("/:id", deleteMovie);
+
+moviesRouter.get("/search", searchMoviesController);
 
 export default moviesRouter;
