@@ -185,7 +185,7 @@ export const deleteMovie = async (req, res) => {
 
 
 
-
+//* searchMoviesController for input bar
 export const searchMoviesController = async (req, res) => {
   try {
     const { q } = req.query;
