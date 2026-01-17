@@ -18,5 +18,5 @@ export const searchMovie = async (query) => {
     },
   });
 
-  return response.data.results;
+  return res.data.results;
 };
