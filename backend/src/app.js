@@ -1,8 +1,8 @@
 import express from "express";
-import authRouter from "./routes/auth.route";
-import userRouter from "./routes/user.route";
-import moviesRouter from "./routes/movies.route";
-import errorMiddleware from "../middlewares/error.middleware.js";
+import authRouter from "./routes/auth.route.js";
+import userRouter from "./routes/user.route.js";
+import moviesRouter from "./routes/movies.route.js";
+import errorMiddleware from "./middlewares/error.middleware.js";
 
 const app = express();
 app.use(express.json());
