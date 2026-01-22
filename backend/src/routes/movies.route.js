@@ -7,16 +7,17 @@ import {
   deleteMovie,
   searchMoviesController
 } from "../controllers/movies.controller.js";
+import authMiddleware from "../middlewares/auth.middleware.js";
 import { createMovieValidator } from "../validators/movie.validator.js";
 import { validate } from "../middlewares/validate.middleware.js";
 
 const moviesRouter = Router();
 
-moviesRouter.get("/", getAllMovies);
+moviesRouter.get("/", authMiddleware, getAllMovies);
 
 moviesRouter.get("/:id", getSpecificMovie);
 
-moviesRouter.post("/", createMovieValidator, validate, addMovie);
+moviesRouter.post("/", authMiddleware, createMovieValidator, validate, addMovie);
 
 moviesRouter.put("/:id", editMovie);
 
