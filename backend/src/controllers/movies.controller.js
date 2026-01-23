@@ -1,12 +1,13 @@
 import MovieEntry from "../models/movieEntry.model.js";
-import { searchMovie } from "../services/tmdb.service.js";
+import { searchMovie } from "../services/searchMovie.service.js";
 
 
 //* GET: /movies/
 export const getAllMovies = async (req, res) => {
   try {
     const userId = req.user.id;
-    const userMovies = await MovieEntry.findById({ user_id: userId });
+
+    const userMovies = await MovieEntry.find({ user_id: userId });
 
     res.status(200).json({
       success: true,
@@ -14,13 +15,14 @@ export const getAllMovies = async (req, res) => {
       data: userMovies,
     });
   } catch (error) {
-    console.error("Error fetchcing movies: ", error);
+    console.error("Error fetching movies:", error);
     res.status(500).json({
       success: false,
       message: "Failed to fetch movies",
     });
   }
 };
+
 
 
 //* GET: /movies/:id
@@ -185,22 +187,29 @@ export const deleteMovie = async (req, res) => {
 
 
 
-//* searchMoviesController for input bar
+//* GET: searchMoviesController for input bar
 export const searchMoviesController = async (req, res) => {
   try {
-    const { q } = req.query;
+    const { query } = req.query;
 
-    const movies = await searchMovie(q);
+    if (!query) {
+      return res.status(400).json({
+        success: false,
+        message: "Search query is required",
+      });
+    }
+
+    const movies = await searchMovie(query);
 
     res.status(200).json({
       success: true,
-      count: movies.length,
       data: movies,
     });
   } catch (error) {
-    res.status(400).json({
+    console.error("Error fetching movie:", error);
+    res.status(500).json({
       success: false,
-      message: error.message,
+      message: "Failed to fetch movie",
     });
   }
 };
