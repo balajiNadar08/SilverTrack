@@ -15,14 +15,15 @@ const moviesRouter = Router();
 
 moviesRouter.get("/", authMiddleware, getAllMovies);
 
-moviesRouter.get("/:id", getSpecificMovie);
+moviesRouter.get("/search", searchMoviesController);
+
+moviesRouter.get("/:id", authMiddleware, getSpecificMovie);
 
 moviesRouter.post("/", authMiddleware, createMovieValidator, validate, addMovie);
 
-moviesRouter.put("/:id", editMovie);
+moviesRouter.put("/:id", authMiddleware, editMovie);
 
-moviesRouter.delete("/:id", deleteMovie);
+moviesRouter.delete("/:id", authMiddleware, deleteMovie);
 
-moviesRouter.get("/search", searchMoviesController);
 
 export default moviesRouter;
