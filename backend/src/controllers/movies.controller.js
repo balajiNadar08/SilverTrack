@@ -7,7 +7,7 @@ export const getAllMovies = async (req, res) => {
   try {
     const userId = req.user.id;
 
-    const userMovies = await MovieEntry.find({ user_id: userId });
+    const userMovies = await MovieEntry.find({ userId });
 
     res.status(200).json({
       success: true,
@@ -61,18 +61,18 @@ export const getSpecificMovie = async (req, res) => {
 export const addMovie = async (req, res) => {
   try {
     const userId = req.user.id;
-    const { tmdb_movie_id, status, rating, note, watchedAt } = req.body;
+    const { tmdbMovieId, status, rating, note, watchedAt } = req.body;
 
-    if (!tmdb_movie_id) {
+    if (!tmdbMovieId) {
       return res.status(400).json({
         success: false,
-        message: "tmdb_movie_id is required",
+        message: "tmdbMovieId is required",
       });
     }
 
     const existingEntry = await MovieEntry.findOne({
-      user_id: userId,
-      tmdb_movie_id,
+      userId,
+      tmdbMovieId,
     });
 
     if (existingEntry) {
@@ -83,8 +83,8 @@ export const addMovie = async (req, res) => {
     }
 
     const movieEntry = await MovieEntry.create({
-      user_id: userId,
-      tmdb_movie_id,
+      userId,
+      tmdbMovieId,
       status,
       rating,
       note,
@@ -103,6 +103,7 @@ export const addMovie = async (req, res) => {
     });
   }
 };
+
 
 
 //* PUT: /movies/:id
