@@ -1,16 +1,19 @@
 import { body } from "express-validator";
 
-export const createMovieValidator = [
-  body("title")
-    .notEmpty().withMessage("Movie title is required"),
+const createMovieValidator = [
+  body("tmdbMovieId")
+    .notEmpty()
+    .withMessage("tmdbMovieId is required"),
 
   body("rating")
     .optional()
     .isFloat({ min: 0, max: 10 })
-    .withMessage("Rating must be between 0 and 10"),
+    .withMessage("Rating must be between 0 to 10"),
 
-  body("watched")
+  body("status")
     .optional()
-    .isBoolean()
-    .withMessage("Watched must be true or false"),
+    .isIn(["planned", "watching", "completed"])
+    .withMessage("Invalid status"),
 ];
+
+export default createMovieValidator;
