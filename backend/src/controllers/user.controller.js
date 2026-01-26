@@ -1,4 +1,5 @@
 import User from "../models/user.model.js";
+import MovieEntry from "../models/movieEntry.model.js";
 
 //* GET: /user/me
 export const getMyProfile = async (req, res) => {
