@@ -4,13 +4,14 @@ import {
   editMyProfile,
   deleteMyProfile,
 } from "../controllers/user.controller.js";
+import authMiddleware from "../middlewares/auth.middleware.js";
 
 const userRouter = Router();
 
-userRouter.get("/me", getMyProfile);
+userRouter.get("/me", authMiddleware, getMyProfile);
 
-userRouter.put("/me", editMyProfile);
+userRouter.put("/me", authMiddleware, editMyProfile);
 
-userRouter.delete("/me", deleteMyProfile);
+userRouter.delete("/me", authMiddleware, deleteMyProfile);
 
 export default userRouter;
