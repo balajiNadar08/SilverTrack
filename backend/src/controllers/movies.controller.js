@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import MovieEntry from "../models/movieEntry.model.js";
 import { searchMovie } from "../services/searchMovie.service.js";
 
@@ -31,9 +32,16 @@ export const getSpecificMovie = async (req, res) => {
     const userId = req.user.id;
     const { id } = req.params;
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid movie ID",
+      });
+    }
+
     const movie = await MovieEntry.findOne({
       _id: id,
-      user_id: userId,
+      userId,
     });
 
     if (!movie) {
@@ -47,14 +55,17 @@ export const getSpecificMovie = async (req, res) => {
       success: true,
       data: movie,
     });
+
   } catch (error) {
-    console.error("Error fetchcing movie: ", error);
+    console.error("Error fetching movie:", error);
     res.status(500).json({
       success: false,
       message: "Failed to fetch movie",
     });
   }
 };
+
+
 
 
 //* POST: /movies/
@@ -105,13 +116,19 @@ export const addMovie = async (req, res) => {
 };
 
 
-
 //* PUT: /movies/:id
 export const editMovie = async (req, res) => {
   try {
     const { id } = req.params;
     const userId = req.user.id;
     const { status, rating, note, watchedAt } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid movie ID",
+      });
+    }
 
     const updateData = {};
     if (status !== undefined) updateData.status = status;
@@ -127,7 +144,7 @@ export const editMovie = async (req, res) => {
     }
 
     const updatedMovie = await MovieEntry.findOneAndUpdate(
-      { _id: id, user_id: userId },
+      { _id: id, userId },
       updateData,
       { new: true }
     );
@@ -160,9 +177,16 @@ export const deleteMovie = async (req, res) => {
     const { id } = req.params;
     const userId = req.user.id;
 
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid movie ID",
+      });
+    }
+
     const deletedMovie = await MovieEntry.findOneAndDelete({
       _id: id,
-      user_id: userId,
+      userId,
     });
 
     if (!deletedMovie) {
@@ -185,7 +209,6 @@ export const deleteMovie = async (req, res) => {
     });
   }
 };
-
 
 
 //* GET: searchMoviesController for input bar
