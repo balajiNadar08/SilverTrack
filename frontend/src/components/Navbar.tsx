@@ -5,6 +5,7 @@ import { Zalando_Sans_Expanded } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 const zalando = Zalando_Sans_Expanded({
   subsets: ["latin"],
@@ -24,15 +25,15 @@ const Navbar: React.FC = () => {
 
           <div className="flex flex-1 items-center">
             <div className="hidden md:flex space-x-8">
-              <a className="text-gray-600 hover:text-gray-900" href="#">
+              <Link className="text-gray-600 hover:text-gray-900" href="/">
                 Home
-              </a>
-              <a className="text-gray-600 hover:text-gray-900" href="#">
+              </Link>
+              <Link className="text-gray-600 hover:text-gray-900" href="/about-dev">
                 About DEV
-              </a>
-              <a className="text-gray-600 hover:text-gray-900" href="#">
+              </Link>
+              <Link className="text-gray-600 hover:text-gray-900" href="/report">
                 Report
-              </a>
+              </Link>
             </div>
 
             <button
