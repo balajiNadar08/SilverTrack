@@ -1,6 +1,4 @@
-import { Zalando_Sans_Expanded } from "next/font/google";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Zalando_Sans_Expanded, Lato } from "next/font/google";
 
 const zalando = Zalando_Sans_Expanded({
   subsets: ["latin"],
@@ -8,12 +6,17 @@ const zalando = Zalando_Sans_Expanded({
   display: "swap",
 });
 
+const lato = Lato({
+  subsets: ['latin'],
+  weight: ['300', '400', '700', '900'],
+  variable: '--font-lato',
+  display: 'swap',
+});
+
 export default function Home() {
   return (
-    <div className={`min-h-screen bg-[#F8F9FA] ${zalando.className}`}>
-      <Navbar />
-
-      <main className="relative h-[calc(100vh-64px)]">
+    <div className={`bg-[#F8F9FA] ${zalando.className}`}>
+      <main className="relative h-[calc(100vh)]">
         <div
           className=" absolute inset-0 grid grid-cols-4 grid-rows-8
           sm:grid-cols-8 sm:grid-rows-6
@@ -52,14 +55,12 @@ export default function Home() {
 
               <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-xl">
                 SILVERTRACK keeps your personal movie history neatly remembered.
-                Because great movie deserves to be remembered.
+                Because great movies deserve to be remembered.
               </p>
             </div>
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 }
