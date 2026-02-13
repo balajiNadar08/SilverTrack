@@ -66,7 +66,7 @@ const Navbar: React.FC = () => {
 
           <div className="flex flex-1 justify-center">
             <Link href={"/"} className="text-2xl font-bold text-gray-800">
-              SilverTrack
+              SILVERTRACK
             </Link>
           </div>
 
