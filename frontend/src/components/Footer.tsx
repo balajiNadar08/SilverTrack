@@ -1,4 +1,12 @@
 import { FaXTwitter, FaInstagram, FaLinkedinIn, FaGithub } from "react-icons/fa6";
+import { Zalando_Sans_Expanded } from "next/font/google";
+
+const zalando = Zalando_Sans_Expanded({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+});
+
 
 export default function Footer() {
   return (
@@ -14,9 +22,9 @@ export default function Footer() {
           gap-4
         "
       >
-        <div className="text-lg font-bold text-gray-900 tracking-wide">
+        <p className={`text-lg font-bold text-gray-900 tracking-wide ${zalando.className}`}>
           SILVERTRACK
-        </div>
+        </p>
 
         <div className="flex text-center items-center gap-4">
           <span className="text-xs uppercase tracking-widest text-gray-500">
