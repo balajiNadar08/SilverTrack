@@ -1,4 +1,5 @@
 import { Zalando_Sans_Expanded, Lato } from "next/font/google";
+import Link from "next/link";
 
 const zalando = Zalando_Sans_Expanded({
   subsets: ["latin"],
@@ -7,10 +8,10 @@ const zalando = Zalando_Sans_Expanded({
 });
 
 const lato = Lato({
-  subsets: ['latin'],
-  weight: ['300', '400', '700', '900'],
-  variable: '--font-lato',
-  display: 'swap',
+  subsets: ["latin"],
+  weight: ["300", "400", "700", "900"],
+  variable: "--font-lato",
+  display: "swap",
 });
 
 export default function Home() {
@@ -57,6 +58,12 @@ export default function Home() {
                 SILVERTRACK keeps your personal movie history neatly remembered.
                 Because great movies deserve to be remembered.
               </p>
+              <Link
+                href="/app"
+                className="inline-block mt-6 px-6 py-4 rounded bg-gray-900 text-[#F8F9FA] transition-transform duration-300 ease-out hover:scale-105"
+              >
+                Try Now!
+              </Link>
             </div>
           </div>
         </div>
