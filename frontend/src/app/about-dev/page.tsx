@@ -1,4 +1,5 @@
 import { Zalando_Sans_Expanded, Lato } from "next/font/google";
+import Image from "next/image";
 
 const zalando = Zalando_Sans_Expanded({
   subsets: ["latin"],
@@ -16,13 +17,22 @@ const lato = Lato({
 const page = () => {
   return (
     <div className={`w-full bg-[#F8F9FA] ${lato.className}`}>
-      <div className="max-w-3xl mx-auto py-24 px-6">
+      <div className="max-w-3xl mx-auto py-14 px-6">
         
         <h1 className={`text-3xl sm:text-4xl font-bold mb-12 text-gray-900 ${zalando.className}`}>
           About the Developer
         </h1>
 
-        <div className="flex flex-col gap-10 text-gray-700 leading-relaxed text-lg sm:text-xl">
+        <div className="relative w-full h-96 mb-8">
+          <Image
+            src="/assets/dev-img.webp"
+            alt="Developer"
+            fill
+            className="rounded-2xl object-cover"
+          />
+        </div>
+
+        <div className="flex flex-col gap-8 text-gray-700 leading-relaxed text-lg sm:text-xl">
           
           <p>
             Hi, I'm{" "}
