@@ -3,8 +3,6 @@
 import { useState } from "react";
 import { Zalando_Sans_Expanded } from "next/font/google";
 import { Button } from "@/components/ui/button";
-import { Field } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
 import Link from "next/link";
 
 const zalando = Zalando_Sans_Expanded({
@@ -21,24 +19,33 @@ const Navbar: React.FC = () => {
       className={`w-full border-b border-gray-200 bg-[#F8F9FA] ${zalando.className}`}
     >
       <div className="mx-auto max-w-7xl px-4">
-        <div className="flex h-16 items-center">
-
-          <div className="flex flex-1 items-center">
+        <div className="relative flex h-16 items-center">
+          
+          <div className="flex items-center space-x-8">
             <div className="hidden md:flex space-x-8">
-              <Link className="text-gray-600 hover:text-gray-900" href="/">
+              <Link
+                className="text-gray-600 hover:text-gray-900 transition"
+                href="/"
+              >
                 Home
               </Link>
-              <Link className="text-gray-600 hover:text-gray-900" href="/about-dev">
+              <Link
+                className="text-gray-600 hover:text-gray-900 transition"
+                href="/about-dev"
+              >
                 About DEV
               </Link>
-              <Link className="text-gray-600 hover:text-gray-900" href="/report">
+              <Link
+                className="text-gray-600 hover:text-gray-900 transition"
+                href="/report"
+              >
                 Report
               </Link>
             </div>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden inline-flex items-center rounded-md p-2 text-gray-600 hover:bg-gray-100"
+              className="md:hidden inline-flex items-center rounded-md p-2 text-gray-600 hover:bg-gray-100 transition"
             >
               <svg
                 className="h-6 w-6"
@@ -64,21 +71,17 @@ const Navbar: React.FC = () => {
             </button>
           </div>
 
-          <div className="flex flex-1 justify-center">
-            <Link href={"/"} className="text-2xl font-bold text-gray-800">
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <Link
+              href="/"
+              className="text-2xl font-bold text-gray-800 tracking-wide"
+            >
               SILVERTRACK
             </Link>
           </div>
 
-          <div className="hidden md:flex flex-1 justify-end">
-            <Field orientation="horizontal">
-              <Input
-                type="search"
-                placeholder="Search..."
-                className="w-40 lg:w-56"
-              />
-              <Button className="cursor-pointer">Search</Button>
-            </Field>
+          <div className="ml-auto hidden md:flex items-center">
+            <Button>Sign Up</Button>
           </div>
         </div>
       </div>
@@ -86,23 +89,28 @@ const Navbar: React.FC = () => {
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 bg-white">
           <div className="space-y-3 px-4 py-4">
-            <a className="block text-gray-600 hover:text-gray-900" href="#">
+            <Link
+              className="block text-gray-600 hover:text-gray-900 transition"
+              href="/"
+            >
               Home
-            </a>
-            <a className="block text-gray-600 hover:text-gray-900" href="#">
-              About
-            </a>
-            <a className="block text-gray-600 hover:text-gray-900" href="#">
-              Services
-            </a>
-            <a className="block text-gray-600 hover:text-gray-900" href="#">
-              Contact
-            </a>
+            </Link>
+            <Link
+              className="block text-gray-600 hover:text-gray-900 transition"
+              href="/about-dev"
+            >
+              About DEV
+            </Link>
+            <Link
+              className="block text-gray-600 hover:text-gray-900 transition"
+              href="/report"
+            >
+              Report
+            </Link>
 
-            <Field orientation="horizontal">
-              <Input type="search" placeholder="Search..." />
-              <Button>Search</Button>
-            </Field>
+            <div className="pt-4">
+              <Button className="w-full">Sign Up</Button>
+            </div>
           </div>
         </div>
       )}
