@@ -14,10 +14,7 @@ export default function Footer() {
       <div
         className="
           max-w-7xl mx-auto
-          px-6
-          py-6
-          flex flex-col sm:flex-row
-          items-center
+          px-6 py-6 flex flex-col sm:flex-row items-center
           sm:justify-between
           gap-4
         "
@@ -28,7 +25,7 @@ export default function Footer() {
 
         <div className="flex text-center items-center gap-4">
           <span className="text-xs uppercase tracking-widest text-gray-500">
-            Developers Socials
+            Developer's Socials
           </span>
 
           <div className="flex items-center gap-4">
