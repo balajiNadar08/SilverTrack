@@ -87,13 +87,13 @@ const Page = () => {
             return (
               <div
                 key={movie.id}
-                className="flex gap-4 bg-[#F8F9FA] border-2 p-4 rounded-xl cursor-pointer"
+                className="flex gap-4 bg-[#F8F9FA] border-2 p-4 rounded-lg cursor-pointer"
               >
                 {posterUrl ? (
                   <img
                     src={posterUrl}
                     alt={movie.original_title}
-                    className="w-28 h-40 object-cover rounded-md"
+                    className="w-34 h-46 object-cover rounded-md"
                   />
                 ) : (
                   <div className="w-28 h-40 bg-zinc-800 rounded-md flex items-center justify-center text-sm">
@@ -104,7 +104,7 @@ const Page = () => {
                 <div className="flex flex-col">
                   <h3 className="text-lg font-bold">{movie.original_title}</h3>
                   <p className="text-sm text-gray-900">{movie.release_date}</p>
-                  <p className="text-sm mt-2 line-clamp-4">{movie.overview}</p>
+                  <p className="text-sm mt-2 line-clamp-5">{movie.overview}</p>
                 </div>
               </div>
             );
