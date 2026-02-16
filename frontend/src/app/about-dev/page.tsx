@@ -76,7 +76,7 @@ const page = () => {
               className={`italic text-xl sm:text-2xl text-gray-900 ${zalando.className}`}
             >
               “The universe chooses to treat some people like they're masochist,
-              even when they are not.”
+              even though they are not.”
             </p>
             <p className="mt-3 text-gray-600">— Balaji</p>
           </div>
