@@ -71,7 +71,7 @@ const Page = () => {
             value={query}
             onChange={handleChange}
           />
-          <Button className="cursor-pointer" onClick={handleSearch}>
+          <Button onClick={handleSearch}>
             Search
           </Button>
         </div>
@@ -87,7 +87,7 @@ const Page = () => {
             return (
               <div
                 key={movie.id}
-                className="flex gap-4 bg-[#F8F9FA] border-2 p-4 rounded-lg cursor-pointer"
+                className="flex gap-4 bg-[#F8F9FA] border-2 p-4 rounded-lg"
               >
                 {posterUrl ? (
                   <img
