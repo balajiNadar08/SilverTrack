@@ -90,7 +90,7 @@ const Page = () => {
             <select
               value={feedbackType}
               onChange={(e) => setFeedbackType(e.target.value)}
-              className="bg-white border border-neutral-300 rounded-xl px-4 py-3 text-sm cursor-pointer sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition"
+              className="bg-white border border-neutral-300 rounded-xl px-4 py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-gray-900 transition"
               required
             >
               <option value="" disabled>
