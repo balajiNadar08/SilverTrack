@@ -25,7 +25,6 @@ export const getAllMovies = async (req, res) => {
 };
 
 
-
 //* GET: /movies/:id
 export const getSpecificMovie = async (req, res) => {
   try {
@@ -64,7 +63,6 @@ export const getSpecificMovie = async (req, res) => {
     });
   }
 };
-
 
 
 
