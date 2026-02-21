@@ -33,10 +33,8 @@ const Navbar: React.FC = () => {
       }
     };
 
-    // Load initially
     loadUser();
 
-    // Listen for login/logout changes
     window.addEventListener("authChanged", loadUser);
 
     return () => {
@@ -59,7 +57,6 @@ const Navbar: React.FC = () => {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
 
-      // Notify app that auth changed
       window.dispatchEvent(new Event("authChanged"));
 
       router.push("/");
@@ -72,12 +69,15 @@ const Navbar: React.FC = () => {
     <nav
       className={`w-full border-b border-gray-200 bg-[#F8F9FA] ${zalando.className}`}
     >
-      <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto px-4">
         <div className="relative flex h-16 items-center">
           <div className="flex items-center space-x-8">
             <div className="hidden md:flex space-x-8">
               <Link className="text-gray-600 hover:text-gray-900 transition" href="/">
                 Home
+              </Link>
+              <Link className="text-gray-600 font-bold hover:text-gray-900 transition" href="/silverarchive">
+                SILVERARCHIVE
               </Link>
               <Link className="text-gray-600 hover:text-gray-900 transition" href="/about-dev">
                 About DEV
@@ -135,6 +135,9 @@ const Navbar: React.FC = () => {
           <div className="space-y-3 px-4 py-4">
             <Link className="block text-gray-600 hover:text-gray-900 transition" href="/">
               Home
+            </Link>
+            <Link className="block text-gray-600 font-bold hover:text-gray-900 transition" href="/silverarchive">
+              SILVERARCHIVE
             </Link>
             <Link className="block text-gray-600 hover:text-gray-900 transition" href="/about-dev">
               About DEV
