@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Movie = {
   id: number;
@@ -14,25 +14,40 @@ const page = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState(false);
 
-  const getMovies = async () => {
-    setLoading(true);
+  useEffect(() => {
+    const getMovies = async () => {
+      setLoading(true);
 
-    try {
-      const res = await fetch(`http://localhost:8000/movies`);
-      if (!res.ok) throw new Error("Failed to fetch");
+      try {
+        const res = await fetch(`http://localhost:8000/movies`);
+        if (!res.ok) throw new Error("Failed to fetch");
 
-      const data = await res.json();
-      setMovies([...data]);
-    } catch (error) {
-      console.log("Could not get all movies. Error: ", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+        const data = await res.json();
+        setMovies([...data]);
+      } catch (error) {
+        console.log("Could not get all movies. Error: ", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    getMovies();
+  }, []);
 
   return (
     <div>
       <h1>SilverArchive</h1>
+      {movies.map((movie) => {
+        const posterUrl = movie.poster_path
+          ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+          : null;
+
+        return (
+          <div key={movie.id}>
+            <h2>{movie.original_title}</h2>
+            {posterUrl && <img src={posterUrl} alt={movie.original_title} />}
+          </div>
+        );
+      })}
     </div>
   );
 };
