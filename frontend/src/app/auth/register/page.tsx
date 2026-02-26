@@ -11,13 +11,6 @@ const zalando = Zalando_Sans_Expanded({
   display: "swap",
 });
 
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
-  variable: "--font-lato",
-  display: "swap",
-});
-
 const Page = () => {
   const router = useRouter();
 
