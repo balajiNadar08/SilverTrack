@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react";
 
 type Movie = {
@@ -25,7 +27,7 @@ const page = () => {
         const data = await res.json();
         setMovies([...data]);
       } catch (error) {
-        console.log("Could not get all movies. Error: ", error);
+        console.log("Could not get all movis. : ", error);
       } finally {
         setLoading(false);
       }
