@@ -149,8 +149,8 @@ const Navbar: React.FC = () => {
             <div className="pt-4 space-y-3">
               {user ? (
                 <>
-                  <p className="text-gray-700 font-medium text-center">
-                    {user.name || user.email}
+                  <p className="text-gray-700 bg-white p-4 rounded-4xl font-medium text-center">
+                    {user.name?.toUpperCase()[0] || user.email?.toUpperCase()[0]}
                   </p>
                   <Button onClick={handleLogout} className="w-full">
                     Sign Out
