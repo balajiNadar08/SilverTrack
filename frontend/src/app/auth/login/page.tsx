@@ -99,7 +99,7 @@ const Page = () => {
             />
           </div>
 
-          {error && <p className="text-sm text-red-500 text-center">{error}</p>}
+          {error && <p className="text-sm text-red-500 text-center">Error 404. Try Again.</p>}
 
           <button
             type="submit"
