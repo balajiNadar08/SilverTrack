@@ -73,16 +73,28 @@ const Navbar: React.FC = () => {
         <div className="relative flex h-16 items-center">
           <div className="flex items-center space-x-8">
             <div className="hidden md:flex space-x-8">
-              <Link className="text-gray-600 hover:text-gray-900 transition" href="/">
+              <Link
+                className="text-gray-600 hover:text-gray-900 transition"
+                href="/"
+              >
                 Home
               </Link>
-              <Link className="text-gray-600 font-bold hover:text-gray-900 transition" href="/silverarchive">
+              <Link
+                className="text-gray-600 font-bold hover:text-gray-900 transition"
+                href="/silverarchive"
+              >
                 SILVERARCHIVE
               </Link>
-              <Link className="text-gray-600 hover:text-gray-900 transition" href="/about-dev">
+              <Link
+                className="text-gray-600 hover:text-gray-900 transition"
+                href="/about-dev"
+              >
                 About DEV
               </Link>
-              <Link className="text-gray-600 hover:text-gray-900 transition" href="/report">
+              <Link
+                className="text-gray-600 hover:text-gray-900 transition"
+                href="/report"
+              >
                 Report
               </Link>
             </div>
@@ -99,16 +111,27 @@ const Navbar: React.FC = () => {
                 viewBox="0 0 24 24"
               >
                 {isOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 )}
               </svg>
             </button>
           </div>
 
           <div className="absolute left-1/2 -translate-x-1/2">
-            <Link href="/" className="text-2xl font-bold text-gray-800 tracking-wide">
+            <Link
+              href="/"
+              className="text-2xl font-bold text-gray-800 tracking-wide"
+            >
               SILVERTRACK
             </Link>
           </div>
@@ -116,8 +139,10 @@ const Navbar: React.FC = () => {
           <div className="ml-auto hidden md:flex items-center space-x-4">
             {user ? (
               <>
-                <span className="text-gray-700 font-medium">
-                  {user.name || user.email}
+                <span
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white text-lg font-semibold"
+                >
+                  {user.name?.toUpperCase()[0] || user.email?.toUpperCase()[0]}
                 </span>
                 <Button onClick={handleLogout}>Sign Out</Button>
               </>
@@ -133,29 +158,43 @@ const Navbar: React.FC = () => {
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 bg-white">
           <div className="space-y-3 px-4 py-4">
-            <Link className="block text-gray-600 hover:text-gray-900 transition" href="/">
+            <Link
+              className="block text-gray-600 hover:text-gray-900 transition"
+              href="/"
+            >
               Home
             </Link>
-            <Link className="block text-gray-600 font-bold hover:text-gray-900 transition" href="/silverarchive">
+            <Link
+              className="block text-gray-600 font-bold hover:text-gray-900 transition"
+              href="/silverarchive"
+            >
               SILVERARCHIVE
             </Link>
-            <Link className="block text-gray-600 hover:text-gray-900 transition" href="/about-dev">
+            <Link
+              className="block text-gray-600 hover:text-gray-900 transition"
+              href="/about-dev"
+            >
               About DEV
             </Link>
-            <Link className="block text-gray-600 hover:text-gray-900 transition" href="/report">
+            <Link
+              className="block text-gray-600 hover:text-gray-900 transition"
+              href="/report"
+            >
               Report
             </Link>
 
             <div className="pt-4 space-y-3">
               {user ? (
-                <>
-                  <p className="text-gray-700 bg-white p-4 rounded-4xl font-medium text-center">
+                <div className="flex flex-col items-center gap-4 justify-center">
+                  <span
+                  className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white text-lg font-semibold"
+                  >
                     {user.name?.toUpperCase()[0] || user.email?.toUpperCase()[0]}
-                  </p>
+                  </span>
                   <Button onClick={handleLogout} className="w-full">
                     Sign Out
                   </Button>
-                </>
+                </div>
               ) : (
                 <Link href="/auth/login">
                   <Button className="w-full">Login</Button>
