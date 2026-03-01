@@ -21,7 +21,7 @@ const lato = Lato({
 });
 
 export type Movie = {
-  id: number; 
+  id: number;
   original_title: string;
   overview: string;
   original_language: string;
@@ -55,7 +55,7 @@ const Page = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:8000/movies/search?query=${encodeURIComponent(query)}`
+        `http://localhost:8000/movies/search?query=${encodeURIComponent(query)}`,
       );
 
       if (!res.ok) throw new Error("Failed to fetch");
@@ -76,16 +76,23 @@ const Page = () => {
     }
   };
 
-  // Prevent background scroll when modal is open
   useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleEsc);
     } else {
       document.body.style.overflow = "auto";
     }
 
     return () => {
       document.body.style.overflow = "auto";
+      window.removeEventListener("keydown", handleEsc);
     };
   }, [isOpen]);
 
@@ -95,9 +102,7 @@ const Page = () => {
     >
       <div className="max-w-5xl mx-auto py-14 px-6">
         <div className="mb-10 text-center">
-          <h1 className="text-4xl font-bold tracking-tight">
-            Discover Movies
-          </h1>
+          <h1 className="text-4xl font-bold tracking-tight">Discover Movies</h1>
           <p className={`mt-3 text-gray-500 ${lato.className}`}>
             Search across thousands of titles and build your{" "}
             <span className="font-bold">SILVERARCHIVE</span>.
@@ -148,24 +153,29 @@ const Page = () => {
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-8">
           {movies.map((movie) => {
             return (
-              <MovieCard key={movie.id} movie={movie} onClick={handleCardClick} />
+              <MovieCard
+                key={movie.id}
+                movie={movie}
+                onClick={handleCardClick}
+              />
             );
           })}
         </div>
 
         {isOpen && selectedMovie && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-white w-full max-w-lg rounded-3xl p-8 shadow-2xl relative">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-md p-4">
+            <div
+              className="absolute inset-0"
+              onClick={() => setIsOpen(false)}
+            />
+
+            <div className="relative w-full max-h-[95vh] overflow-y-auto">
               <button
                 onClick={() => setIsOpen(false)}
-                className="absolute top-4 right-4 text-gray-400 hover:text-gray-700"
+                className="absolute top-4 right-4 z-50 w-10 h-10 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-black transition"
               >
                 ✕
               </button>
-
-              <h2 className="text-2xl font-bold mb-6">
-                {selectedMovie.original_title}
-              </h2>
 
               <MovieModal
                 movie={selectedMovie}
