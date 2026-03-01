@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import MovieEntry from "../models/movieEntry.model.js";
 import { searchMovie } from "../services/searchMovie.service.js";
+import axios from "axios";
 
 
 //* GET: /movies/
@@ -91,6 +92,17 @@ export const addMovie = async (req, res) => {
       });
     }
 
+    const tmdbResponse = await axios.get(
+      `https://api.themoviedb.org/3/movie/${tmdbMovieId}`,
+      {
+        params: {
+          api_key: process.env.API_KEY,
+        },
+      }
+    );
+
+    const movieData = tmdbResponse.data;
+
     const movieEntry = await MovieEntry.create({
       userId,
       tmdbMovieId,
@@ -98,6 +110,13 @@ export const addMovie = async (req, res) => {
       rating,
       note,
       watchedAt,
+
+      original_title: movieData.original_title,
+      backdrop_path: movieData.backdrop_path,
+      poster_path: movieData.poster_path,
+      overview: movieData.overview,
+      original_language: movieData.original_language,
+      release_date: movieData.release_date,
     });
 
     res.status(201).json({
