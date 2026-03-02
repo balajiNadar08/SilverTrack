@@ -34,7 +34,6 @@ const Navbar: React.FC = () => {
     };
 
     loadUser();
-
     window.addEventListener("authChanged", loadUser);
 
     return () => {
@@ -69,82 +68,89 @@ const Navbar: React.FC = () => {
     <nav
       className={`w-full border-b border-gray-200 bg-[#F8F9FA] ${zalando.className}`}
     >
-      <div className="mx-auto px-4">
-        <div className="relative flex h-16 items-center">
-          <div className="flex items-center space-x-8">
-            <div className="hidden md:flex space-x-8">
-              <Link
-                className="text-gray-600 hover:text-gray-900 transition"
-                href="/"
-              >
-                Home
-              </Link>
-              <Link
-                className="text-gray-600 font-bold hover:text-gray-900 transition"
-                href="/silverarchive"
-              >
-                SILVERARCHIVE
-              </Link>
-              <Link
-                className="text-gray-600 hover:text-gray-900 transition"
-                href="/about-dev"
-              >
-                About DEV
-              </Link>
-              <Link
-                className="text-gray-600 hover:text-gray-900 transition"
-                href="/report"
-              >
-                Report
-              </Link>
-            </div>
+      <div className="mx-auto px-4 lg:max-w-7xl lg:px-8">
+        <div className="relative flex h-16 items-center justify-between">
 
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden inline-flex items-center rounded-md p-2 text-gray-600 hover:bg-gray-100 transition"
+          <div className="hidden md:flex items-center space-x-8">
+            <Link
+              className="text-gray-600 hover:text-gray-900 transition"
+              href="/"
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                viewBox="0 0 24 24"
-              >
-                {isOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
+              Home
+            </Link>
+
+            <Link
+              className="text-gray-600 font-bold hover:text-gray-900 transition"
+              href="/silverarchive"
+            >
+              SILVERARCHIVE
+            </Link>
+
+            <Link
+              className="text-gray-600 hover:text-gray-900 transition"
+              href="/about-dev"
+            >
+              About DEV
+            </Link>
           </div>
 
+          {/* MOBILE MENU BUTTON */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden inline-flex items-center rounded-md p-2 text-gray-600 hover:bg-gray-100 transition"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              {isOpen ? (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              ) : (
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              )}
+            </svg>
+          </button>
+
+          {/* CENTER LOGO */}
           <div className="absolute left-1/2 -translate-x-1/2">
             <Link
-              href="/"
+              href="/app"
               className="text-2xl font-bold text-gray-800 tracking-wide"
             >
               SILVERTRACK
             </Link>
           </div>
 
-          <div className="ml-auto hidden md:flex items-center space-x-4">
+          {/* RIGHT SIDE (Desktop) */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Link
+              className="text-gray-600 hover:text-gray-900 transition"
+              href="/report"
+            >
+              Report
+            </Link>
+
             {user ? (
               <>
-                <span
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white text-lg font-semibold"
-                >
-                  {user.name?.toUpperCase()[0] || user.email?.toUpperCase()[0]}
+                <span className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white text-lg font-semibold border border-gray-300">
+                  {user.name?.toUpperCase()[0] ||
+                    user.email?.toUpperCase()[0]}
                 </span>
-                <Button onClick={handleLogout}>Sign Out</Button>
+
+                <Button onClick={handleLogout}>
+                  Sign Out
+                </Button>
               </>
             ) : (
               <Link href="/auth/login">
@@ -155,27 +161,32 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
+      {/* MOBILE DROPDOWN */}
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 bg-white">
-          <div className="space-y-3 px-4 py-4">
+          <div className="space-y-4 px-4 py-4">
+
             <Link
               className="block text-gray-600 hover:text-gray-900 transition"
               href="/"
             >
               Home
             </Link>
+
             <Link
               className="block text-gray-600 font-bold hover:text-gray-900 transition"
               href="/silverarchive"
             >
               SILVERARCHIVE
             </Link>
+
             <Link
               className="block text-gray-600 hover:text-gray-900 transition"
               href="/about-dev"
             >
               About DEV
             </Link>
+
             <Link
               className="block text-gray-600 hover:text-gray-900 transition"
               href="/report"
@@ -185,19 +196,24 @@ const Navbar: React.FC = () => {
 
             <div className="pt-4 space-y-3">
               {user ? (
-                <div className="flex flex-col items-center gap-4 justify-center">
-                  <span
-                  className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white text-lg font-semibold"
-                  >
-                    {user.name?.toUpperCase()[0] || user.email?.toUpperCase()[0]}
+                <div className="flex flex-col items-center gap-4">
+                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white text-lg font-semibold border border-gray-300">
+                    {user.name?.toUpperCase()[0] ||
+                      user.email?.toUpperCase()[0]}
                   </span>
-                  <Button onClick={handleLogout} className="w-full">
+
+                  <Button
+                    onClick={handleLogout}
+                    className="w-full"
+                  >
                     Sign Out
                   </Button>
                 </div>
               ) : (
                 <Link href="/auth/login">
-                  <Button className="w-full">Login</Button>
+                  <Button className="w-full">
+                    Login
+                  </Button>
                 </Link>
               )}
             </div>
