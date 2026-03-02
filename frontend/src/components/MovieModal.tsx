@@ -1,5 +1,6 @@
 import { Movie } from "@/app/app/page";
 import { useState } from "react";
+import axios from "axios";
 
 type Props = {
   movie: Movie;
@@ -12,6 +13,8 @@ const MovieModal = ({ movie, onClose }: Props) => {
   const [watchedAt, setWatchedAt] = useState("");
   const [note, setNote] = useState("");
   const [expanded, setExpanded] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const overview = movie.overview || "No overview available.";
   const isLong = overview.length > 180;
@@ -30,9 +33,43 @@ const MovieModal = ({ movie, onClose }: Props) => {
     ? new Date(movie.release_date).getFullYear()
     : "N/A";
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+
+    try {
+      const token = localStorage.getItem("token");
+      await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/movies`,
+        {
+          tmdbMovieId: movie.id,
+          status,
+          rating,
+          note,
+          watchedAt,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      onClose();
+      alert("Movie added in SILVERARCHIVE");
+    } catch (err: any) {
+      setError(err.response?.data?.message || "Failed to save movie.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="w-full max-w-5xl mx-auto bg-white rounded-2xl overflow-hidden shadow-2xl">
-      
+    <form
+      onSubmit={handleSubmit}
+      className="w-full max-w-5xl mx-auto bg-white rounded-2xl overflow-hidden shadow-2xl"
+    >
       {backdropUrl && (
         <div className="relative h-48 sm:h-64 md:h-80 w-full">
           <img
@@ -46,7 +83,6 @@ const MovieModal = ({ movie, onClose }: Props) => {
 
       <div className="px-4 sm:px-8 py-6 -mt-16 relative">
         <div className="flex flex-col md:flex-row gap-6">
-
           <div className="w-40 sm:w-48 md:w-56 shrink-0 mx-auto md:mx-0">
             {posterUrl ? (
               <img
@@ -62,7 +98,6 @@ const MovieModal = ({ movie, onClose }: Props) => {
           </div>
 
           <div className="flex-1 flex flex-col gap-5">
-
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold">
                 {movie.original_title}
@@ -76,6 +111,7 @@ const MovieModal = ({ movie, onClose }: Props) => {
               {displayedText}
               {isLong && (
                 <button
+                  type="button"
                   onClick={() => setExpanded(!expanded)}
                   className="ml-2 font-semibold text-black hover:underline"
                 >
@@ -85,32 +121,29 @@ const MovieModal = ({ movie, onClose }: Props) => {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
               <div>
-                <label className="block text-xs font-medium mb-1">
-                  Status
-                </label>
+                <label className="block text-xs font-medium mb-1">Status</label>
                 <select
                   value={status}
                   onChange={(e) => setStatus(e.target.value)}
                   className="w-full border rounded-xl p-2 text-sm focus:ring-2 focus:ring-black outline-none"
                 >
                   <option value="completed">Completed</option>
-                  <option value="plan">Plan to Watch</option>
+                  <option value="planned">Plan to Watch</option>
                   <option value="watching">Watching</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-xs font-medium mb-1">
-                  Rating
-                </label>
+                <label className="block text-xs font-medium mb-1">Rating</label>
                 <input
                   type="number"
                   min="1"
                   max="10"
                   value={rating ?? ""}
-                  onChange={(e) => setRating(Number(e.target.value))}
+                  onChange={(e) =>
+                    setRating(e.target.value ? Number(e.target.value) : null)
+                  }
                   className="w-full border rounded-xl p-2 text-sm focus:ring-2 focus:ring-black outline-none"
                   placeholder="Rate 1-10"
                 />
@@ -129,9 +162,7 @@ const MovieModal = ({ movie, onClose }: Props) => {
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-xs font-medium mb-1">
-                  Notes
-                </label>
+                <label className="block text-xs font-medium mb-1">Notes</label>
                 <textarea
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
@@ -142,16 +173,19 @@ const MovieModal = ({ movie, onClose }: Props) => {
               </div>
             </div>
 
+            {error && <p className="text-red-500 text-sm">{error}</p>}
+
             <button
-              className="w-full bg-black text-white py-3 rounded-2xl text-sm font-semibold hover:opacity-90 transition"
-              onClick={onClose}
+              type="submit"
+              disabled={loading}
+              className="w-full bg-black text-white py-3 rounded-2xl text-sm font-semibold hover:opacity-90 transition disabled:opacity-50"
             >
-              Save to SILVERARCHIVE
+              {loading ? "Saving..." : "Save to SILVERARCHIVE"}
             </button>
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 
