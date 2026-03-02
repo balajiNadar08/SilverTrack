@@ -33,6 +33,7 @@ export default function Footer() {
               href="https://x.com/iONE_08"
               aria-label="Twitter / X"
               className="text-gray-500 hover:text-gray-900 transition-colors"
+              target="_blank"
             >
               <FaXTwitter size={18} />
             </a>
@@ -41,6 +42,7 @@ export default function Footer() {
               href="https://www.instagram.com/balaji_nadar_08/"
               aria-label="Instagram"
               className="text-gray-500 hover:text-gray-900 transition-colors"
+              target="_blank"
             >
               <FaInstagram size={18} />
             </a>
@@ -49,6 +51,7 @@ export default function Footer() {
               href="https://www.linkedin.com/in/balaji-nadar-828b41354/"
               aria-label="LinkedIn"
               className="text-gray-500 hover:text-gray-900 transition-colors"
+              target="_blank"
             >
               <FaLinkedinIn size={18} />
             </a>
@@ -57,6 +60,7 @@ export default function Footer() {
               href="https://github.com/balajiNadar08"
               aria-label="Github"
               className="text-gray-500 hover:text-gray-900 transition-colors"
+              target="_blank"
             >
               <FaGithub size={18} />
             </a>
