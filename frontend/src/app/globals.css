@@ -18,9 +18,30 @@
 } */
 
 body {
-  /* background: var(--background);
-  color: var(--foreground); */
   cursor: none;
+}
+
+::selection {
+  background-color: black;
+  color: white;
+}
+
+@keyframes breathe {
+
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.2);
+  }
+
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.animate-breathe {
+  animation: breathe 2.5s ease-in-out infinite;
 }
 
 @theme inline {
