@@ -60,7 +60,7 @@ export default function Home() {
               </p>
               <Link
                 href="/app"
-                className="inline-block mt-6 px-6 py-4 rounded bg-gray-900 text-[#F8F9FA] transition-transform duration-300 ease-out hover:scale-105"
+                className="inline-block mt-6 px-6 py-4 rounded bg-gray-900 text-[#F8F9FA] transition-transform duration-300 ease-out animate-breathe"
               >
                 Try Now!
               </Link>
