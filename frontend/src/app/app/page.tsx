@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import MovieModal from "@/components/MovieModal";
 import { useState, ChangeEvent, useEffect } from "react";
 import MovieCard from "@/components/MovieCard";
+import { Popcorn } from "lucide-react";
 
 const zalando = Zalando_Sans_Expanded({
   subsets: ["latin"],
@@ -19,6 +20,7 @@ const lato = Lato({
   variable: "--font-lato",
   display: "swap",
 });
+
 
 export type Movie = {
   id: number;
@@ -105,7 +107,7 @@ const Page = () => {
           <h1 className="text-4xl font-bold tracking-tight">Discover Movies</h1>
           <p className={`mt-3 text-gray-500 ${lato.className}`}>
             Search across thousands of titles and build your{" "}
-            <span className="font-bold">SILVERARCHIVE</span>.
+            <span className={`font-bold ${zalando.className}`}>SILVERARCHIVE</span>.
           </p>
         </div>
 
@@ -133,7 +135,9 @@ const Page = () => {
 
         {!hasSearched && !loading && (
           <div className="mt-20 text-center text-gray-400">
-            <div className="text-6xl mb-4">🍿</div>
+            <div className="text-black mb-4 flex justify-center">
+              <Popcorn size={64} />
+            </div>
             <p>Start typing and uncover something legendary.</p>
           </div>
         )}
