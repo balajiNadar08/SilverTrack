@@ -28,7 +28,7 @@ const errorMiddleware = (req, res, err, next) => {
     message,
   };
 
-  if (process.env.NODE_ENV === "development") {
+  if (process.env.NEXT_PUBLIC_NODE_ENV === "development") {
     response.stack = err.stack;
   }
 
