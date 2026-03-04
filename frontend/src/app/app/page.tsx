@@ -57,7 +57,7 @@ const Page = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:8000/movies/search?query=${encodeURIComponent(query)}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/movies/search?query=${encodeURIComponent(query)}`,
       );
 
       if (!res.ok) throw new Error("Failed to fetch");
