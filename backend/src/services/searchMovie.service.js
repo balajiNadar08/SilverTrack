@@ -3,7 +3,7 @@ import axios from "axios";
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 
 export const searchMovie = async (query) => {
-  const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+  const API_KEY = process.env.API_KEY;
 
   if (!query) {
     throw new Error("Search query is required");
