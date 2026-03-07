@@ -7,9 +7,19 @@ import errorMiddleware from "./middlewares/error.middleware.js";
 
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://silver-track-by-balaji.vercel.app"
+];
+
 app.use(cors({
-  origin: "https://silver-track-by-balaji.vercel.app",
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
 }));
 
 app.use(express.json());
