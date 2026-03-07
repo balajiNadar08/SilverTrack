@@ -96,7 +96,7 @@ export const addMovie = async (req, res) => {
       `https://api.themoviedb.org/3/movie/${tmdbMovieId}`,
       {
         params: {
-          api_key: process.env.NEXT_PUBLIC_API_KEY,
+          api_key: process.env.API_KEY,
         },
       }
     );
