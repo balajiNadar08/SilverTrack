@@ -8,10 +8,11 @@ import errorMiddleware from "./middlewares/error.middleware.js";
 const app = express();
 
 const allowedOrigins = [
-  "http://localhost:3000",
+  "http://localhost:3000",      // dev only, not for prod
   "https://silver-track-by-balaji.vercel.app"
 ];
 
+// dev only, not for prod
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
