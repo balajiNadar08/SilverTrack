@@ -23,7 +23,7 @@ const authMiddleware = (req, res, next) => {
   } catch (error) {
     return res.status(401).json({
       success: false,
-      message: "Login to add movie in SILVERARCHIVE",
+      message: "Register / Login to add movie in SILVERARCHIVE",
     });
   }
 };
