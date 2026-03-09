@@ -47,6 +47,7 @@ const movieEntrySchema = new mongoose.Schema(
 
     rating: {
       type: Number,
+      required: [true, "Rating is required"],
       min: 0,
       max: 10,
     },
