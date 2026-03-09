@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { Zalando_Sans_Expanded, Lato } from "next/font/google";
+import { Zalando_Sans_Expanded } from "next/font/google";
 import Link from "next/link";
 
 const zalando = Zalando_Sans_Expanded({
@@ -32,18 +32,21 @@ const Page = () => {
     try {
       setLoading(true);
 
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: username,
+            email,
+            password,
+            avatar: "avatar1.webp",
+          }),
         },
-        body: JSON.stringify({
-          name: username,
-          email,
-          password,
-          avatar: "avatar1.webp",
-        }),
-      });
+      );
 
       const data = await response.json();
 
@@ -53,6 +56,8 @@ const Page = () => {
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
+
+      window.dispatchEvent(new Event("authChanged"));
 
       router.push("/app");
     } catch (err: any) {
