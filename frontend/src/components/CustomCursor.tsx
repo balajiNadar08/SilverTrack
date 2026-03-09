@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const CustomCursor = () => {
+  const [enabled, setEnabled] = useState(false);
+
   const outerRef = useRef<HTMLDivElement>(null);
   const dotRef = useRef<HTMLDivElement>(null);
   const mouse = useRef({ x: 0, y: 0 });
@@ -11,6 +13,13 @@ const CustomCursor = () => {
   const rafId = useRef<number>(0);
 
   useEffect(() => {
+    const media = window.matchMedia("(hover: hover) and (pointer: fine)");
+    if (media.matches) setEnabled(true);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+
     const moveCursor = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY };
     };
@@ -18,8 +27,10 @@ const CustomCursor = () => {
     const handleMouseOver = (e: Event) => {
       const target = e.target as HTMLElement;
       const hovering = !!target.closest("a, button");
+
       if (hovering !== isHovering.current) {
         isHovering.current = hovering;
+
         if (outerRef.current) {
           outerRef.current.setAttribute("data-hovering", String(hovering));
         }
@@ -27,7 +38,7 @@ const CustomCursor = () => {
     };
 
     const animate = () => {
-      const LERP = 0.12; // lower = more lag/smoothness
+      const LERP = 0.12;
 
       outer.current.x += (mouse.current.x - outer.current.x) * LERP;
       outer.current.y += (mouse.current.y - outer.current.y) * LERP;
@@ -47,6 +58,7 @@ const CustomCursor = () => {
 
     window.addEventListener("mousemove", moveCursor);
     window.addEventListener("mouseover", handleMouseOver);
+
     rafId.current = requestAnimationFrame(animate);
 
     return () => {
@@ -54,7 +66,9 @@ const CustomCursor = () => {
       window.removeEventListener("mouseover", handleMouseOver);
       cancelAnimationFrame(rafId.current);
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   return (
     <>
