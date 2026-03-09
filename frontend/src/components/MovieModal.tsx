@@ -145,7 +145,7 @@ const MovieModal = ({ movie, onClose }: Props) => {
                     setRating(e.target.value ? Number(e.target.value) : null)
                   }
                   className="w-full border rounded-xl p-2 text-sm focus:ring-2 focus:ring-black outline-none"
-                  placeholder="Rate 1-10"
+                  placeholder="Rating / Expectation (1–10)"
                 />
               </div>
 
