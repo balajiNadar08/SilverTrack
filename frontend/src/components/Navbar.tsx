@@ -94,7 +94,6 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* MOBILE MENU BUTTON */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden inline-flex items-center rounded-md p-2 text-gray-600 hover:bg-gray-100 transition"
@@ -122,7 +121,6 @@ const Navbar: React.FC = () => {
             </svg>
           </button>
 
-          {/* CENTER LOGO */}
           <div className="absolute left-1/2 -translate-x-1/2">
             <Link
               href="/app"
@@ -132,7 +130,6 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          {/* RIGHT SIDE (Desktop) */}
           <div className="hidden md:flex items-center space-x-4">
             <Link
               className="text-gray-600 hover:text-gray-900 transition"
@@ -153,15 +150,14 @@ const Navbar: React.FC = () => {
                 </Button>
               </>
             ) : (
-              <Link href="/auth/login">
-                <Button>Login</Button>
+              <Link href="/auth/register">
+                <Button>Register</Button>
               </Link>
             )}
           </div>
         </div>
       </div>
 
-      {/* MOBILE DROPDOWN */}
       {isOpen && (
         <div className="md:hidden border-t border-gray-200 bg-white">
           <div className="space-y-4 px-4 py-4">
@@ -210,9 +206,9 @@ const Navbar: React.FC = () => {
                   </Button>
                 </div>
               ) : (
-                <Link href="/auth/login">
+                <Link href="/auth/register">
                   <Button className="w-full">
-                    Login
+                    Register
                   </Button>
                 </Link>
               )}
