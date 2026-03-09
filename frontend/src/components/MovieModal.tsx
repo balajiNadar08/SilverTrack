@@ -59,7 +59,7 @@ const MovieModal = ({ movie, onClose }: Props) => {
       onClose();
       alert("Movie added to SILVERARCHIVE. Find it in the menu → SILVERARCHIVE.");
     } catch (err: any) {
-      setError(err.response?.data?.message || "Failed to save movie.");
+      setError(err.response?.data?.message || "Failed to save movie. Please add a rating before saving.");
     } finally {
       setLoading(false);
     }
