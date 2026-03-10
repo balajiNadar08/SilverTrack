@@ -151,7 +151,7 @@ const Navbar: React.FC = () => {
               </>
             ) : (
               <Link href="/auth/register">
-                <Button>Register</Button>
+                <Button className="cursor-pointer">Register</Button>
               </Link>
             )}
           </div>
