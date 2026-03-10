@@ -21,7 +21,6 @@ const lato = Lato({
   display: "swap",
 });
 
-
 export type Movie = {
   id: number;
   original_title: string;
@@ -107,7 +106,10 @@ const Page = () => {
           <h1 className="text-4xl font-bold tracking-tight">Discover Movies</h1>
           <p className={`mt-3 text-gray-500 ${lato.className}`}>
             Search across thousands of titles and build your{" "}
-            <span className={`font-bold ${zalando.className}`}>SILVERARCHIVE</span>.
+            <span className={`font-bold ${zalando.className}`}>
+              SILVERARCHIVE
+            </span>
+            .
           </p>
         </div>
 
@@ -117,11 +119,16 @@ const Page = () => {
             placeholder="Search any movie..."
             value={query}
             onChange={handleChange}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch();
+              }
+            }}
             className="h-12 rounded-xl"
           />
           <Button
             onClick={handleSearch}
-            className="h-12 px-6 rounded-xl font-semibold"
+            className="h-12 px-6 rounded-xl font-semibold cursor-pointer"
           >
             Search
           </Button>
