@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { Zalando_Sans_Expanded, Lato } from "next/font/google";
+import { Zalando_Sans_Expanded } from "next/font/google";
 import Link from "next/link";
 
 const zalando = Zalando_Sans_Expanded({
