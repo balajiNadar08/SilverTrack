@@ -1,16 +1,9 @@
-import { Zalando_Sans_Expanded, Lato } from "next/font/google";
+import { Zalando_Sans_Expanded } from "next/font/google";
 import Link from "next/link";
 
 const zalando = Zalando_Sans_Expanded({
   subsets: ["latin"],
   weight: ["400", "700"],
-  display: "swap",
-});
-
-const lato = Lato({
-  subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
-  variable: "--font-lato",
   display: "swap",
 });
 
