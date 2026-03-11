@@ -9,15 +9,15 @@ The backend stores only user-specific data and references movies using TMDB IDs.
 ## Features
 
 * User authentication
-* Add, update, and remove movie entries
 * Track status, rating and personal notes
+* Add, update and remove movie entries
 * Fetch movie details from TMDB
 
 ---
 
 ## Tech Stack
 
-FRONTEND: Next.js, Tailwind.css, Typescript
+FRONTEND: Next.js, Tailwind.css, Typescript 
 BACKEND: Express.js, MongoDB
 API: TMDB API
 
