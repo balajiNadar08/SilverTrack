@@ -23,6 +23,12 @@ API: TMDB API
 
 ---
 
+## Website Link
+
+LINK: silver-track-by-balaji.vercel.app
+
+---
+
 ## Project Status
 
 This is a personal project and is not open for external contributions.
