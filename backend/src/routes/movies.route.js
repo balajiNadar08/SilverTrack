@@ -13,9 +13,9 @@ import { validate } from "../middlewares/validate.middleware.js";
 
 const moviesRouter = Router();
 
-moviesRouter.get("/", authMiddleware, getAllMovies);
-
 moviesRouter.get("/search", searchMoviesController);
+
+moviesRouter.get("/", authMiddleware, getAllMovies);
 
 moviesRouter.get("/:id", authMiddleware, getSpecificMovie);
 
