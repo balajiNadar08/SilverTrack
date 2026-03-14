@@ -46,13 +46,6 @@ API: TMDB API
 
 ---
 
-## Project Status
-
-This is a personal project built for learning and experimentation.
-External contributions are currently not accepted.
-
----
-
 ## License
 
 MIT License
