@@ -38,14 +38,6 @@ LINK: silver-track-by-balaji.vercel.app
 
 ---
 
-## Tech Stack
-
-FRONTEND: Next.js, Tailwind.css, Typescript 
-BACKEND: Express.js, MongoDB
-API: TMDB API
-
----
-
 ## License
 
 MIT License
