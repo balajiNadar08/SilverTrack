@@ -1,17 +1,40 @@
 # SilverTrack
 
-SilverTrack is a personal movie tracking application built to track movies a user has watched, is watching or plans to watch.
+SilverTrack is a personal movie tracking application that helps users keep track of the movies they have watched or are currently watching or plan to watch.
 
-The backend stores only user-specific data and references movies using TMDB IDs. All movie metadata is fetched dynamically from TMDB API.
+Instead of storing large amounts of movie metadata, the application stores only user-specific data and references movies using TMDB IDs. Movie details such as title, poster, overview and ratings are fetched dynamically from the TMDB API.
 
 ---
 
 ## Features
 
 * User authentication
-* Track status, rating and personal notes
-* Add, update and remove movie entries
-* Fetch movie details from TMDB
+* Track movies with different statuses (Watched, Watching, Plan to Watch)
+* Add personal ratings and notes
+* Add, update and remove movies from your list
+* Fetch movie details dynamically using the TMDB API
+
+---
+
+## Tech Stack
+
+**Frontend**
+- Next.js
+- Tailwind CSS
+- TypeScript
+
+**Backend**
+- Express.js
+- MongoDB
+
+**API**
+- TMDB API
+
+---
+
+## Live Website
+
+LINK: silver-track-by-balaji.vercel.app
 
 ---
 
@@ -23,15 +46,10 @@ API: TMDB API
 
 ---
 
-## Website Link
-
-LINK: silver-track-by-balaji.vercel.app
-
----
-
 ## Project Status
 
-This is a personal project and is not open for external contributions.
+This is a personal project built for learning and experimentation.
+External contributions are currently not accepted.
 
 ---
 
